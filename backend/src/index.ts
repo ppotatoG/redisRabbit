@@ -1,6 +1,7 @@
 require('dotenv').config();
 import express from 'express';
 import mongoose from 'mongoose';
+import userRoutes from './routes/userRoutes';
 
 const app = express();
 
@@ -10,6 +11,8 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use('/api', userRoutes);
+
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log('Successfully connected to mongodb'))
@@ -18,7 +21,7 @@ mongoose
 app.listen(PORT, () => {
   console.log(`
     #############################################
-        🛡️ Server listening on port: 8000 🛡️
+        🛡️ Server listening on port: ${PORT} 🛡️
     #############################################    
     `);
 });
