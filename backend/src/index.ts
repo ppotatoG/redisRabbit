@@ -1,15 +1,24 @@
-import express, { Request, Response } from 'express';
+require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
 
-const app = express(); // express 객체 받아옴
+const app = express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hi! This is my first express server');
-}); // HTTP GET method 정의
+const { PORT, MONGO_URI } = process.env;
 
-app.listen('8000', () => {
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log('Successfully connected to mongodb'))
+  .catch((e) => console.error(e));
+
+app.listen(PORT, () => {
   console.log(`
     #############################################
         🛡️ Server listening on port: 8000 🛡️
     #############################################    
     `);
-}); // 8000번 포트에서 서버 실행
+});
