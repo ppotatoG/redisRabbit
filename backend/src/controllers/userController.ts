@@ -12,14 +12,10 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const readUsers = async (req: Request, res: Response) => {
-  console.log('readUsers');
   try {
-    console.log('try');
     const users = await User.find({});
-    console.log(users);
     res.send(users);
   } catch (error) {
-    console.log('catch');
     res.status(500).send(error);
   }
 };
