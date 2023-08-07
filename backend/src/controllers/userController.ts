@@ -4,7 +4,7 @@ import {
   deleteUserService,
   findUsersService,
   updateUserService,
-} from '../services/userService';
+} from '@/services/userService';
 
 export const createUser = async (req: Request, res: Response) => {
   try {
