@@ -1,11 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
-interface IUser extends Document {
-  email: string;
-  password: string;
-  nickname: string;
-  emailVerified: boolean;
-}
+import mongoose, { Schema } from 'mongoose';
 
 const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
@@ -15,9 +8,9 @@ const UserSchema: Schema = new Schema({
 });
 
 UserSchema.pre('save', function (next) {
-  const user = this as IUser;
+  const user = this as ISchemaUser;
   user.nickname = user.email.split('@')[0];
   next();
 });
 
-export default mongoose.model<IUser>('User', UserSchema);
+export default mongoose.model<ISchemaUser>('User', UserSchema);
