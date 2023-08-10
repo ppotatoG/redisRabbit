@@ -25,14 +25,6 @@ export const readUsers = async (req: Request, res: Response) => {
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  const updates = Object.keys(req.body);
-  const allowedUpdates = ['password', 'emailVerified'];
-  const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
-
-  if (!isValidOperation) {
-    return res.status(400).send({ error: 'Invalid updates!' });
-  }
-
   try {
     const user = await updateUserService(req.params.id, req.body);
     if (!user) {
@@ -40,6 +32,9 @@ export const updateUser = async (req: Request, res: Response) => {
     }
     res.send(user);
   } catch (error) {
+    if (error.message === 'Invalid updates!') {
+      return res.status(400).send({ error: error.message });
+    }
     res.status(400).send(error);
   }
 };

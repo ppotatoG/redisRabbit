@@ -16,12 +16,13 @@ export const updateUserService = async (userId: string, updates: Partial<ISchema
     return null;
   }
 
-  const allowedUpdates = ['password', 'emailVerified'];
-  for (const key in updates) {
-    if (allowedUpdates.includes(key)) {
-      user[key] = updates[key];
-    }
+  const allowedUpdates = ['password'];
+
+  if (!Object.keys(updates).every((key) => allowedUpdates.includes(key))) {
+    throw new Error('Invalid updates!');
   }
+
+  Object.keys(updates).forEach((key) => (user[key] = updates[key]));
 
   await user.save();
   return user;
