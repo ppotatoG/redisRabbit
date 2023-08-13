@@ -69,3 +69,6 @@ yarn-error.log
 .yarn-integrity
 
 .idea/
+
+frontend/node_modules
+frontend/.nuxt
