@@ -14,11 +14,11 @@
     "allowJs": true,
     "noEmit": false,
     "esModuleInterop": true,
-    "typeRoots": ["./src/types/express.d.ts", "./node_modules/@type"],
+    "typeRoots": ["./src/types/express.d.ts", "./node_modules/@types"],
     "declaration": true,
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"]
+      "@*": ["*"]
     }
   },
   "include": ["./src/**/*"],

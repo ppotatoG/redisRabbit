@@ -1,5 +1,5 @@
-import { connectDB } from '@/middleware/db';
-import { setupMiddleware } from '@/middleware/middleware';
+import { connectDB } from '@middleware/db';
+import { setupMiddleware } from '@middleware/middleware';
 
 import express from 'express';
 import userRoutes from './routes/userRoutes';
