@@ -18,13 +18,13 @@ export default {
 
   css: [],
 
-  plugins: [],
+  plugins: ['~/plugins/axios'],
 
   components: true,
 
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
 
-  modules: [],
+  modules: ['@nuxtjs/axios'],
 
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -44,5 +44,9 @@ export default {
     }
   },
 
-  build: {}
+  build: {},
+
+  axios: {
+    baseURL: 'http://localhost:8000'
+  }
 };
