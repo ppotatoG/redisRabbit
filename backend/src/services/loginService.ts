@@ -17,8 +17,7 @@ export const loginService = async (data: {
       return { success: false, message: 'User not found' };
     }
 
-    // TODO: bcrypt 사용
-    const isMatch: boolean = password === user.password;
+    const isMatch: boolean = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return { success: false, message: 'Invalid password' };
     }
